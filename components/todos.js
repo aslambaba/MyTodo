@@ -7,7 +7,7 @@ export default function Header({mytodos, RemoveHandler}){
             <FlatList
                 data={mytodos}
                 renderItem={({item})=>(
-                <TouchableOpacity onPress={RemoveHandler(item.id)}>
+                <TouchableOpacity onPress={()=> RemoveHandler(item.id)}>
                     <Text style={Style.Todo}>{item.task}</Text>
                 </TouchableOpacity>
                 )}

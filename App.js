@@ -2,21 +2,32 @@ import React, {useState} from 'react';
 import { StyleSheet, View } from 'react-native';
 import Header from './components/header';
 import MyTodos from './components/todos';
+import AddTodo from './components/addtodo';
 
 export default function App() {
 
   const [mytodos, setTodos] = useState([
-    {task: 'Read Books', id: '1'},
-    {task: 'Go to Walk', id: '2'},
-    {task: 'Go to Sleep', id: '3'},
   ]);
 
+
   const RemoveHandler = (id) => {
-    console.log(id);
+    setTodos((prev)=>{
+      return prev.filter(todo => todo.id != id);
+    })
+  }
+  const AddHandler = (data)=> {
+    setTodos((previou)=> {
+      return [
+        {task: data, id: Math.random.toString()},
+        ...previou
+      ]
+    }
+    )
   }
   return (
     <View style={styles.container}>
       <Header />
+      <AddTodo AddHandler={AddHandler}/>
       <MyTodos mytodos={mytodos} RemoveHandler={RemoveHandler}/>      
     </View>
   );
